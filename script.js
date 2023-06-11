@@ -1,5 +1,18 @@
-// const playerSelection = prompt("Let's play Rock, Paper, Scissors. What's your choice?");
-const playerSelection = 'Rock';
+alert("Let's play Rock, Paper, Scissors!");
+requiredPrompt();
+
+function requiredPrompt() {
+  let answer = prompt("What's your choice?");
+  if (answer === null) {
+    alert("Please enter a valid value (Rock, Paper or Scissors)");
+    requiredPrompt();
+  } else if (answer.toLowerCase() === 'rock' || answer.toLowerCase() === 'paper' || answer.toLowerCase() === 'scissors') {
+    game(answer.toLowerCase());
+  } else {
+    alert("Please enter a valid value (Rock, Paper or Scissors)");
+    requiredPrompt();
+  };
+};
 
 function getComputerChoice() {
   const handSignals = ['rock', 'paper', 'scissors'];
@@ -11,7 +24,7 @@ function playRound(playerSelection) {
   let result;
   const computerSelection = getComputerChoice();
 
-  switch (playerSelection.toLowerCase()) {
+  switch (playerSelection) {
     case 'rock':
       computerSelection === 'scissors' ? result = "You win! Rock beats Scissors"
       : computerSelection === 'paper' ? result = "You lose! Paper beats Rock"
@@ -28,16 +41,12 @@ function playRound(playerSelection) {
       computerSelection === 'paper' ? result = "You win! Scissors beats Paper"
       : computerSelection === 'rock' ? result = "You lose! Rock beats Scissors"
       : result = "It's a tie!"
-      break;
-
-    default:
-      result = "Please enter a valid value: Rock, Paper or Scissors"
   };
 
   return result;
 };
 
-function game() {
+function game(playerSelection) {
   let playerPoints = 0;
   let computerPoints = 0;
 
@@ -51,10 +60,10 @@ function game() {
 
     if (winRegExp.test(roundResult)) {
       playerPoints++;
-      console.log(`\tYour score has increased! ${playerPoints}`);
+      console.log(`\tYour score has increased!`);
     } else if (loseRegExp.test(roundResult)) {
       computerPoints++;
-      console.log(`\tOh no! Computer score has increased! ${computerPoints}`)
+      console.log(`\tOh no! Computer score has increased!`)
     } else if (tieRegExp.test(roundResult)) {
       console.log("\tNo one earns points.")
     }
@@ -71,5 +80,3 @@ function game() {
     console.log("The game has tied!")
   };
 };
-
-game();
