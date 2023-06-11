@@ -61,22 +61,29 @@ function game(playerSelection) {
     if (winRegExp.test(roundResult)) {
       playerPoints++;
       console.log(`\tYour score has increased!`);
+      alert(roundResult);
     } else if (loseRegExp.test(roundResult)) {
       computerPoints++;
       console.log(`\tOh no! Computer score has increased!`)
+      alert(roundResult);
     } else if (tieRegExp.test(roundResult)) {
       console.log("\tNo one earns points.")
+      alert(roundResult);
     }
   };
 
   let pointsResults = `Results:\n\tYou: ${playerPoints} points\n\tComputer: ${computerPoints} points`;
   console.log(pointsResults);
+  alert(pointsResults);
 
   if (playerPoints > computerPoints) {
     console.log("You win this game!");
+    alert("You win this game!");
   } else if (playerPoints < computerPoints) {
-    console.log("You lose this game!")
+    console.log("You lose this game!");
+    alert("You lose this game!");
   } else if (playerPoints === computerPoints) {
-    console.log("The game has tied!")
+    console.log("The game has tied!");
+    alert("The game has tied!");
   };
 };
