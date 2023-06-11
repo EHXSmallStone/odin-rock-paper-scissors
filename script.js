@@ -54,21 +54,19 @@ function game(playerSelection) {
   const loseRegExp = /^You lose/i;
   const tieRegExp = /tie/i;
 
-  for (let i = 0; i < 5; i++) {
+  for (let i = 1; i <= 5; i++) {
     let roundResult = playRound(playerSelection);
-    console.log(roundResult);
+    console.log(`(Round ${i}) ${roundResult}`);
+    alert(`(Round ${i}) ${roundResult}`);
 
     if (winRegExp.test(roundResult)) {
       playerPoints++;
       console.log(`\tYour score has increased!`);
-      alert(roundResult);
     } else if (loseRegExp.test(roundResult)) {
       computerPoints++;
       console.log(`\tOh no! Computer score has increased!`)
-      alert(roundResult);
     } else if (tieRegExp.test(roundResult)) {
       console.log("\tNo one earns points.")
-      alert(roundResult);
     }
   };
 
