@@ -1,5 +1,7 @@
 alert("Let's play Rock, Paper, Scissors!");
-requiredPrompt();
+let playerSelection;
+
+game();
 
 function requiredPrompt() {
   let answer = prompt("What's your choice?");
@@ -7,7 +9,7 @@ function requiredPrompt() {
     alert("Please enter a valid value (Rock, Paper or Scissors)");
     requiredPrompt();
   } else if (answer.toLowerCase() === 'rock' || answer.toLowerCase() === 'paper' || answer.toLowerCase() === 'scissors') {
-    game(answer.toLowerCase());
+    playerSelection = answer.toLowerCase();
   } else {
     alert("Please enter a valid value (Rock, Paper or Scissors)");
     requiredPrompt();
@@ -46,7 +48,7 @@ function playRound(playerSelection) {
   return result;
 };
 
-function game(playerSelection) {
+function game() {
   let playerPoints = 0;
   let computerPoints = 0;
 
@@ -55,6 +57,7 @@ function game(playerSelection) {
   const tieRegExp = /tie/i;
 
   for (let i = 1; i <= 5; i++) {
+    requiredPrompt();
     let roundResult = playRound(playerSelection);
     console.log(`(Round ${i}) ${roundResult}`);
     alert(`(Round ${i}) ${roundResult}`);
