@@ -1,21 +1,3 @@
-alert("Let's play Rock, Paper, Scissors!");
-let playerSelection;
-
-game();
-
-function requiredPrompt() {
-  let answer = prompt("What's your choice?");
-  if (answer === null) {
-    alert("Please enter a valid value (Rock, Paper or Scissors)");
-    requiredPrompt();
-  } else if (answer.toLowerCase() === 'rock' || answer.toLowerCase() === 'paper' || answer.toLowerCase() === 'scissors') {
-    playerSelection = answer.toLowerCase();
-  } else {
-    alert("Please enter a valid value (Rock, Paper or Scissors)");
-    requiredPrompt();
-  };
-};
-
 function getComputerChoice() {
   const handSignals = ['rock', 'paper', 'scissors'];
   let getRandomNumber = () => Math.floor(Math.random() * 3);
@@ -46,45 +28,4 @@ function playRound(playerSelection) {
   };
 
   return result;
-};
-
-function game() {
-  let playerPoints = 0;
-  let computerPoints = 0;
-
-  const winRegExp = /^You win/i;
-  const loseRegExp = /^You lose/i;
-  const tieRegExp = /tie/i;
-
-  for (let i = 1; i <= 5; i++) {
-    requiredPrompt();
-    let roundResult = playRound(playerSelection);
-    console.log(`(Round ${i}) ${roundResult}`);
-    alert(`(Round ${i}) ${roundResult}`);
-
-    if (winRegExp.test(roundResult)) {
-      playerPoints++;
-      console.log(`\tYour score has increased!`);
-    } else if (loseRegExp.test(roundResult)) {
-      computerPoints++;
-      console.log(`\tOh no! Computer score has increased!`)
-    } else if (tieRegExp.test(roundResult)) {
-      console.log("\tNo one earns points.")
-    }
-  };
-
-  let pointsResults = `Results:\n\tYou: ${playerPoints} points\n\tComputer: ${computerPoints} points`;
-  console.log(pointsResults);
-  alert(pointsResults);
-
-  if (playerPoints > computerPoints) {
-    console.log("You win this game!");
-    alert("You win this game!");
-  } else if (playerPoints < computerPoints) {
-    console.log("You lose this game!");
-    alert("You lose this game!");
-  } else if (playerPoints === computerPoints) {
-    console.log("The game has tied!");
-    alert("The game has tied!");
-  };
 };
