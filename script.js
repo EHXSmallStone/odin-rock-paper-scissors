@@ -57,6 +57,13 @@ function playRound(playerSelection) {
   }
 };
 
+function gameOver() {
+  handSignal.forEach(sign => {
+    sign.hidden = true;
+  })
+  replay.hidden = false;
+};
+
 const handSignal = document.querySelectorAll(".sign");
 handSignal.forEach(sign => {
   sign.addEventListener("click", playRound);
@@ -67,12 +74,13 @@ const results = document.querySelector(".results")
 const playerPoints = document.querySelector("#playerPoints");
 const computerPoints = document.querySelector("#computerPoints");
 
-function gameOver() {
+const replay = document.querySelector("#replay"); // Select replay button
+replay.addEventListener("click", () => {
+  replay.hidden = true;
+  playerPoints.textContent = 0;
+  computerPoints.textContent = 0;
+  results.textContent = "First to score 5 points wins the game";
   handSignal.forEach(sign => {
-    sign.hidden = true;
+    sign.hidden = false;
   })
-};
-
-// SI un jugador alcanza los 5 puntos, el juego debe terminar:
-  // Se anuncia el ganador en results div
-  // gameOver() Los botones sign deben esconderse (hidden true) y el boton Replay debe de aparecer para reiniciar el juego
+});
