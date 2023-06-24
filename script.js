@@ -10,21 +10,39 @@ function playRound(playerSelection) {
 
   switch (playerSelection.target.id) {
     case 'rock':
-      computerSelection === 'scissors' ? result = "You win! Rock beats Scissors"
-      : computerSelection === 'paper' ? result = "You lose! Paper beats Rock"
-      : result = "It's a tie!"
+      if (computerSelection === 'scissors') {
+        playerPoints.textContent++;
+        result = "You win! Rock beats Scissors";
+      } else if (computerSelection === 'paper') {
+        computerPoints.textContent++;
+        result = "You lose! Paper beats Rock";
+      } else {
+        result = "It's a tie!";
+      }
       break;
 
     case 'paper':
-      computerSelection === 'rock' ? result = "You win! Paper beats Rock"
-      : computerSelection === 'scissors' ? result = "You lose! Scissors beats Paper"
-      : result = "It's a tie!"
+      if (computerSelection === 'rock') {
+        playerPoints.textContent++;
+        result = "You win! Paper beats Rock";
+      } else if (computerSelection === 'scissors') {
+        computerPoints.textContent++;
+        result = "You lose! Scissors beats Paper";
+      } else {
+        result = "It's a tie!";
+      }
       break;
 
     case 'scissors':
-      computerSelection === 'paper' ? result = "You win! Scissors beats Paper"
-      : computerSelection === 'rock' ? result = "You lose! Rock beats Scissors"
-      : result = "It's a tie!"
+      if (computerSelection === 'paper') {
+        playerPoints.textContent++;
+        result = "You win! Scissors beats Paper";
+      } else if (computerSelection === 'rock') {
+        computerPoints.textContent++;
+        result = "You lose! Rock beats Scissors";
+      } else {
+        result = "It's a tie!";
+      }
   };
 
   results.textContent = result;
@@ -37,3 +55,6 @@ handSignal.forEach(sign => {
 });
 
 const results = document.querySelector(".results")
+
+const playerPoints = document.querySelector("#playerPoints");
+const computerPoints = document.querySelector("#computerPoints");
