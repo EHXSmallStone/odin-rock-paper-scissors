@@ -8,7 +8,7 @@ function playRound(playerSelection) {
   let result;
   const computerSelection = getComputerChoice();
 
-  switch (playerSelection) {
+  switch (playerSelection.target.id) {
     case 'rock':
       computerSelection === 'scissors' ? result = "You win! Rock beats Scissors"
       : computerSelection === 'paper' ? result = "You lose! Paper beats Rock"
@@ -27,5 +27,13 @@ function playRound(playerSelection) {
       : result = "It's a tie!"
   };
 
+  results.textContent = result;
   return result;
 };
+
+const handSignal = document.querySelectorAll(".sign");
+handSignal.forEach(sign => {
+  sign.addEventListener("click", playRound);
+});
+
+const results = document.querySelector(".results")
