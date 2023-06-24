@@ -1,3 +1,26 @@
+const handSignal = document.querySelectorAll(".sign");
+handSignal.forEach(sign => {
+  sign.addEventListener("click", playRound);
+});
+
+const roundResult = document.querySelector(".roundResult")
+const gameResult = document.querySelector(".gameResult");
+
+const playerPoints = document.querySelector("#playerPoints");
+const computerPoints = document.querySelector("#computerPoints");
+
+const replay = document.querySelector(".replay"); // Select replay button
+replay.addEventListener("click", () => {
+  replay.hidden = true;
+  gameResult.textContent = "";
+  playerPoints.textContent = 0;
+  computerPoints.textContent = 0;
+  roundResult.textContent = "First to score 5 points wins the game";
+  handSignal.forEach(sign => {
+    sign.hidden = false;
+  })
+});
+
 function getComputerChoice() {
   const handSignals = ['rock', 'paper', 'scissors'];
   let getRandomNumber = () => Math.floor(Math.random() * 3);
@@ -45,42 +68,20 @@ function playRound(playerSelection) {
       }
   };
 
-  if (playerPoints.textContent >= 5) {
-    gameOver();
-    results.textContent = "You win this game!";
-  } else if (computerPoints.textContent >= 5) {
-    gameOver();
-    results.textContent = "You lose this game... :("
-  } else {
-    results.textContent = result;
-    return;
-  }
+  roundResult.textContent = result;
+  if (playerPoints.textContent >= 5 || computerPoints.textContent >= 5) gameOver();
 };
 
 function gameOver() {
   handSignal.forEach(sign => {
     sign.hidden = true;
-  })
-  replay.hidden = false;
+  });
+
+  if (playerPoints.textContent >= 5) {
+    gameResult.textContent = "You win this game!";
+  } else {
+    gameResult.textContent = "You lose this game... :(";
+  }
+
+  setTimeout(() => {replay.hidden = false;}, 1000);
 };
-
-const handSignal = document.querySelectorAll(".sign");
-handSignal.forEach(sign => {
-  sign.addEventListener("click", playRound);
-});
-
-const results = document.querySelector(".results")
-
-const playerPoints = document.querySelector("#playerPoints");
-const computerPoints = document.querySelector("#computerPoints");
-
-const replay = document.querySelector("#replay"); // Select replay button
-replay.addEventListener("click", () => {
-  replay.hidden = true;
-  playerPoints.textContent = 0;
-  computerPoints.textContent = 0;
-  results.textContent = "First to score 5 points wins the game";
-  handSignal.forEach(sign => {
-    sign.hidden = false;
-  })
-});
