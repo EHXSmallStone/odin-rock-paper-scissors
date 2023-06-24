@@ -45,8 +45,16 @@ function playRound(playerSelection) {
       }
   };
 
-  results.textContent = result;
-  return result;
+  if (playerPoints.textContent >= 5) {
+    gameOver();
+    results.textContent = "You win this game!";
+  } else if (computerPoints.textContent >= 5) {
+    gameOver();
+    results.textContent = "You lose this game... :("
+  } else {
+    results.textContent = result;
+    return;
+  }
 };
 
 const handSignal = document.querySelectorAll(".sign");
@@ -58,3 +66,13 @@ const results = document.querySelector(".results")
 
 const playerPoints = document.querySelector("#playerPoints");
 const computerPoints = document.querySelector("#computerPoints");
+
+function gameOver() {
+  handSignal.forEach(sign => {
+    sign.hidden = true;
+  })
+};
+
+// SI un jugador alcanza los 5 puntos, el juego debe terminar:
+  // Se anuncia el ganador en results div
+  // gameOver() Los botones sign deben esconderse (hidden true) y el boton Replay debe de aparecer para reiniciar el juego
