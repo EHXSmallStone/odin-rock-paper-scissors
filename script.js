@@ -105,19 +105,20 @@ function gameOver() {
   } else {
     gameResult.textContent = "You lose this game... :(";
   }
-
+  
+  gameResult.hidden = false;
   setTimeout(() => {replay.hidden = false;}, 1500);
 };
 
 const replay = document.querySelector(".replay");
 replay.addEventListener("click", () => {
+  playerSelectionImg.src = "./images/player-question-mark.png";
+  computerSelectionImg.src = "./images/computer-question-mark.png";
   replay.hidden = true;
-  gameResult.textContent = "";
+  gameResult.hidden = true;
   playerPoints.textContent = 0;
   computerPoints.textContent = 0;
   roundResult.textContent = "First to score 5 points wins the game!";
-  playerSelectionImg.src = "./images/player-question-mark.png";
-  computerSelectionImg.src = "./images/computer-question-mark.png";
   handSignal.forEach(sign => {
     sign.hidden = false;
   })
