@@ -51,12 +51,14 @@ body {
   margin-bottom: 3em;
 }
 
-.icon {
+.playerSelection,
+.computerSelection {
   width: 128px;
   height: 128px;
   margin-bottom: 0.25em;
 }
-.icon img {
+.playerSelection img,
+.computerSelection img {
   width: 100%;
 }
 
@@ -84,5 +86,28 @@ body {
 
 .footer {
   font-size: 0.8em;
-  margin: 1.25rem 0;
+  padding: 1.25rem 0;
+  background-color: #fff;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+  width: 350px;
+  align-self: center;
+}
+
+a {
+  color: #0051ef;
+}
+.author a {
+  color: #000;
+}
+
+a:visited {
+  color:#34468e;
+}
+.author a:visited {
+  color: #000;
+}
+
+a:active {
+  color: #000;
 }

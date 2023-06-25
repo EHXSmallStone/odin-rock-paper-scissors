@@ -9,18 +9,6 @@ const gameResult = document.querySelector(".gameResult");
 const playerPoints = document.querySelector("#playerPoints");
 const computerPoints = document.querySelector("#computerPoints");
 
-const replay = document.querySelector(".replay"); // Select replay button
-replay.addEventListener("click", () => {
-  replay.hidden = true;
-  gameResult.textContent = "";
-  playerPoints.textContent = 0;
-  computerPoints.textContent = 0;
-  roundResult.textContent = "First to score 5 points wins the game!";
-  handSignal.forEach(sign => {
-    sign.hidden = false;
-  })
-});
-
 function getComputerChoice() {
   const handSignals = ['rock', 'paper', 'scissors'];
   let getRandomNumber = () => Math.floor(Math.random() * 3);
@@ -30,8 +18,9 @@ function getComputerChoice() {
 function playRound(playerSelection) {
   let result;
   const computerSelection = getComputerChoice();
+  playerSelection = playerSelection.target.id;
 
-  switch (playerSelection.target.id) {
+  switch (playerSelection) {
     case 'rock':
       if (computerSelection === 'scissors') {
         playerPoints.textContent++;
@@ -68,8 +57,42 @@ function playRound(playerSelection) {
       }
   };
 
+  changeSelectionImg(playerSelection, computerSelection);
   roundResult.textContent = result;
   if (playerPoints.textContent >= 5 || computerPoints.textContent >= 5) gameOver();
+};
+
+const playerSelectionImg = document.querySelector(".playerSelection img");
+const computerSelectionImg = document.querySelector(".computerSelection img");
+
+function changeSelectionImg(playerSelection, computerSelection) {
+  switch(playerSelection) {
+    case 'rock':
+      playerSelectionImg.src = "./images/rock.png";
+      break;
+    
+    case 'paper':
+      playerSelectionImg.src = "./images/paper.png";
+      break;
+
+    case 'scissors':
+      playerSelectionImg.src = "./images/scissors.png";
+      break;
+  };
+
+  switch(computerSelection) {
+    case 'rock':
+      computerSelectionImg.src = "./images/rock.png";
+      break;
+    
+    case 'paper':
+      computerSelectionImg.src = "./images/paper.png";
+      break;
+
+    case 'scissors':
+      computerSelectionImg.src = "./images/scissors.png";
+      break;
+  };
 };
 
 function gameOver() {
@@ -85,3 +108,17 @@ function gameOver() {
 
   setTimeout(() => {replay.hidden = false;}, 1500);
 };
+
+const replay = document.querySelector(".replay");
+replay.addEventListener("click", () => {
+  replay.hidden = true;
+  gameResult.textContent = "";
+  playerPoints.textContent = 0;
+  computerPoints.textContent = 0;
+  roundResult.textContent = "First to score 5 points wins the game!";
+  playerSelectionImg.src = "./images/player-question-mark.png";
+  computerSelectionImg.src = "./images/computer-question-mark.png";
+  handSignal.forEach(sign => {
+    sign.hidden = false;
+  })
+});
