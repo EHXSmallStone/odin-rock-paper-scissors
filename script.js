@@ -15,7 +15,7 @@ replay.addEventListener("click", () => {
   gameResult.textContent = "";
   playerPoints.textContent = 0;
   computerPoints.textContent = 0;
-  roundResult.textContent = "First to score 5 points wins the game";
+  roundResult.textContent = "First to score 5 points wins the game!";
   handSignal.forEach(sign => {
     sign.hidden = false;
   })
@@ -83,5 +83,5 @@ function gameOver() {
     gameResult.textContent = "You lose this game... :(";
   }
 
-  setTimeout(() => {replay.hidden = false;}, 1000);
+  setTimeout(() => {replay.hidden = false;}, 1500);
 };
