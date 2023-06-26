@@ -66,33 +66,8 @@ const playerSelectionImg = document.querySelector(".playerSelection img");
 const computerSelectionImg = document.querySelector(".computerSelection img");
 
 function changeSelectionImg(playerSelection, computerSelection) {
-  switch(playerSelection) {
-    case 'rock':
-      playerSelectionImg.src = "./images/rock.png";
-      break;
-    
-    case 'paper':
-      playerSelectionImg.src = "./images/paper.png";
-      break;
-
-    case 'scissors':
-      playerSelectionImg.src = "./images/scissors.png";
-      break;
-  };
-
-  switch(computerSelection) {
-    case 'rock':
-      computerSelectionImg.src = "./images/rock.png";
-      break;
-    
-    case 'paper':
-      computerSelectionImg.src = "./images/paper.png";
-      break;
-
-    case 'scissors':
-      computerSelectionImg.src = "./images/scissors.png";
-      break;
-  };
+  playerSelectionImg.src = "./images/" + playerSelection + ".png";
+  computerSelectionImg.src = "./images/" + computerSelection + ".png";
 };
 
 function gameOver() {
